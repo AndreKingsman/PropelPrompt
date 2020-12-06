@@ -50,3 +50,28 @@ Example:
 ```
 
 For the main application, I decided to only apply a simple CSS styling, since I considered it important that the design was simple and unobtrusive to promote focus and productivity.
+
+I wanted to display a timer during sessions, so that users would be informed in real time about how much time they have spent working. An easy solutions that I found, was to modify a countdown timer from <a href=“https://www.w3schools.com/howto/howto_js_countdown.asp”>w3schools</a>, so that it counted up from the current time, instead of counting down to a later date.
+
+``` <script>
+var countFromDate = new Date().getTime();
+
+var x = setInterval(function() {
+
+  var now = new Date().getTime();
+
+  var distance = now - countFromDate;
+
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  document.getElementById("timer").innerHTML = hours + "h "
+  + minutes + "m " + seconds + "s ";
+
+  if (distance < 0) {
+    clearInterval(x);
+  }
+});
+</script> ```
+
