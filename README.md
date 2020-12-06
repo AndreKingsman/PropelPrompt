@@ -46,6 +46,7 @@ Example:
 ``` <button type="submit" class="bt-hidden" style="padding: 0px; height: 50px; width: 205px">
 <img src="/static/login_bt.svg" style="width: 100%">
 {{ form.submit(class="bt-hidden", style="width: 0px") }}
-</button> ```
+</button>
+```
 
-For the actual app, I decided to apply a simple CSS styling, since I considered it important that the design was simple and unobtrusive to promote focus and productivity.
+For the main application, I decided to only apply a simple CSS styling, since I considered it important that the design was simple and unobtrusive to promote focus and productivity.
