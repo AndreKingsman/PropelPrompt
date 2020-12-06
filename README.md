@@ -87,7 +87,9 @@ schedule_items = [item.item for item in Schedule.query.filter_by(user_id = curre
 class ScheduleForm(FlaskForm):
 	item = SelectField("Goal", choices = sorted([x.header for x in Goal.query.filter_by(user_id = current_user.user_id) if x.header not in schedule_items]),
 	                   validators = [DataRequired()])
-  deadline = DateField("Deadline", format = "%Y-%m-%d", render_kw={"placeholder": "YYYY-MM-DD"})
-  submit = SubmitField("Set Reminder")
+        deadline = DateField("Deadline", format = "%Y-%m-%d", render_kw={"placeholder": "YYYY-MM-DD"})
+        submit = SubmitField("Set Reminder")
 ```
+
+A similar problem with a different solution arose when programming the session feature. Users would have to be able to select from their set goals and tasks to start a session. However, rather than using a dynamic form, a better solution was to program several routes that the user went through, during which the user chose a goal, a task, and finally started the session. Each route temporarily stores information, such as the goal name and task, before this information is submitted when the user starts the timer. The added benefit over using a dynamic form is that users have a better overview of their goals and tasks when selecting them, and can navigate in and out of goals before committing to a task that they want to focus on.
 
