@@ -53,7 +53,8 @@ For the main application, I decided to only apply a simple CSS styling, since I 
 
 I wanted to display a timer during sessions, so that users would be informed in real time about how much time they have spent working. An easy solutions that I found, was to modify a countdown timer from <a href=“https://www.w3schools.com/howto/howto_js_countdown.asp”>w3schools</a>, so that it counted up from the current time, instead of counting down to a later date.
 
-``` <script>
+```
+<script>
 var countFromDate = new Date().getTime();
 
 var x = setInterval(function() {
@@ -73,5 +74,6 @@ var x = setInterval(function() {
     clearInterval(x);
   }
 });
-</script> ```
+</script>
+```
 
