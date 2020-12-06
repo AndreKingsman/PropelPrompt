@@ -36,7 +36,16 @@ From the landing page, you can navigate to register a new account or log in. Onc
 
 The application uses the Flask web framework, the Jinja template engine to pass variables from python to HTML, the flask_sqlalchemy package to setup a database, and Bootstrap to create a responsive web interface. Bcrypt is used to encrypt user passwords.
 
-First, required packages are imported, then Flask form classes and login/registration functions are defined before the app is instantiated. Afterwards, several classes are defined for each database table. Finally, each web route is defined. Most routes include a flask form which allows users to post information, which is then displayed and stored for later use. Each return statement either renders an HTML page, located in the templates folder, or redirects the user to an HTML page. Each route that the user is retried to login for, includes an @login_required statement. This is important because data is often queried by the current user id (e.g, ``` Goal.query.filter_by(user_id = current_user.user_id)```), which requires a user to be logged in.
+First, required packages are imported, then Flask form classes and login/registration functions are defined before the app is instantiated. Afterwards, several classes are defined for each database table. Finally, each web route is defined. Most routes include a flask form which allows users to post information, which is then displayed and stored for later use. Each return statement either renders an HTML page, located in the templates folder, or redirects the user to an HTML page. Each route that the user is required to be logged in for, includes an @login_required statement. This is important because data is often queried by the current user id (e.g, ``` Goal.query.filter_by(user_id = current_user.user_id)```), which requires a user to be logged in.
 
 ## Challenges and Solutions
 
+To preserve a consistent design across the index, register and login page, I wanted to implement custom svg buttons. However, I needed these buttons to trigger the validate_on_submit functions to submit the flask forms that I had setup. The workaround that I found to disguise the bare ``` {{  form.submit() }} ``` as an svg image, was to wrap both the svg image and the submit button in html button tags, and hide the {{  form.submit() }} field by writing a CSS class that hid the button, and giving it zero width.
+
+Example:
+``` <button type="submit" class="bt-hidden" style="padding: 0px; height: 50px; width: 205px">
+<img src="/static/login_bt.svg" style="width: 100%">
+{{ form.submit(class="bt-hidden", style="width: 0px") }}
+</button> ```
+
+For the actual app, I decided to apply a simple CSS styling, since I considered it important that the design was simple and unobtrusive to promote focus and productivity.
