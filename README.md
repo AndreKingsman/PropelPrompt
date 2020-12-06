@@ -13,3 +13,6 @@ The index, register and login page feature open source illustrations from <a hre
 
 ## Setup
 
+To run the app locally, download all the files above. Make sure that the file structure is preserved.
+
+(1) Navigate to the application through your terminal. (2) Run ```console pip3 install -r requirements.txt```
