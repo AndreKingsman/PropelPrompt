@@ -15,6 +15,11 @@ The index, register and login page feature open source illustrations from <a hre
 
 To run the app locally, download all the files above. Make sure that the file structure is preserved.
 
-(1) Navigate to the application through your terminal. (2) Run ```console pip3 install -r requirements.txt``` to install all necessary python requirements. (3) Open and run setup_sql.py to create the sql database. This should create a new file called site.db. (4) Launch the flask application from your terminal by running ```console python3 app.py```  (5) If any packages are still missing at this point, run ```pip3 install <package_name>``` and repeat (4) until the app launches. (5) Launch your browser (chrome recommended) and type 0.0.0.0. You can now register a new account and get started.
+(1) Navigate to the application through your terminal.
+(2) Run ```console pip3 install -r requirements.txt``` to install all necessary python requirements.
+(3) Open and run setup_sql.py to create the sql database. This should create a new file called site.db.
+(4) Launch the Flask application from your terminal by running ```console python3 app.py```.
+(5) If any packages are still missing at this point, run ```pip3 install <package_name>``` and repeat (4) until the app launches.
+(6) Launch your browser (chrome recommended) and type 0.0.0.0. You can now register a new account and get started.
 
 ## Flask App
