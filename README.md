@@ -93,3 +93,26 @@ class ScheduleForm(FlaskForm):
 
 A similar problem with a different solution arose when programming the session feature. Users would have to be able to select from their set goals and tasks to start a session. However, rather than using a dynamic form, a better solution was to program several routes that the user went through, during which the user chose a goal, a task, and finally started the session. Each route temporarily stores information, such as the goal name and task, before this information is submitted when the user starts the timer. The added benefit over using a dynamic form is that users have a better overview of their goals and tasks when selecting them, and can navigate in and out of goals before committing to a task that they want to focus on.
 
+As described above, the goal name and task name are temporarily stored in the route and then finally inserted into the sessions table when a session is started.
+
+``` 
+@app.route("/session/<goal_name>/<task_name>/start", methods = ["GET", "POST"])
+@login_required
+def session_start(goal_name, task_name):
+    form = SessionForm()
+    if form.validate_on_submit():
+        current_user_goals = Goal.query.filter_by(user_id = current_user.user_id)
+        current_goal_id = current_user_goals.filter_by(header = goal_name).first().goal_id
+        current_user_tasks = Task.query.filter_by(goal_id = current_goal_id)
+        new_session = Session(start = datetime.datetime.now(),
+                                               task = task_name,
+                                               user_id = current_user.user_id,
+                                               goal_id = current_goal_id,
+                                               task_id = current_user_tasks.filter_by(task = task_name).first().task_id)
+        db.session.add(new_session)
+        db.session.commit()
+        current_session_id = new_session.session_id
+        return redirect(url_for("session", goal_name = goal_name, task_name = task_name, 
+                                 current_session_id = current_session_id))
+    return render_template("11_session_start.html", form = form)
+``` 
